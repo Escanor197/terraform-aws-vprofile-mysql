@@ -1,0 +1,27 @@
+# Terraform working directory and state
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+crash.log
+crash.*.log
+
+# Local variable files can contain credentials
+terraform.tfvars
+*.auto.tfvars
+*.auto.tfvars.json
+
+# Terraform CLI configuration
+.terraformrc
+terraform.rc
+
+# Private keys and certificates
+*.pem
+*.ppk
+*.key
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
