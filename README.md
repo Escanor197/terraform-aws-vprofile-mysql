@@ -13,11 +13,11 @@ A complete Infrastructure as Code project that deploys a highly structured AWS e
 
 ```mermaid
 flowchart TB
-    User((Internet User)) -->|HTTP 80| ALB[Application Load Balancer\nPublic Subnets]
+    User((Internet User)) -->|HTTP 80| ALB["Application Load Balancer<br/>Public Subnets"]
 
-    Admin((Administrator)) -->|SSH 22| Bastion[Bastion Host\nPublic Subnet]
-    Bastion -->|SSH 22| T1[Tomcat EC2 1\nPrivate App Subnet AZ-1]
-    Bastion -->|SSH 22| T2[Tomcat EC2 2\nPrivate App Subnet AZ-2]
+    Admin((Administrator)) -->|SSH 22| Bastion["Bastion Host<br/>Public Subnet"]
+    Bastion -->|SSH 22| T1["Tomcat EC2 1<br/>Private App Subnet AZ-1"]
+    Bastion -->|SSH 22| T2["Tomcat EC2 2<br/>Private App Subnet AZ-2"]
 
     ALB -->|HTTP 8080| T1
     ALB -->|HTTP 8080| T2
@@ -28,16 +28,17 @@ flowchart TB
     T1 -->|Memcached 11211| Cache[(ElastiCache Memcached)]
     T2 -->|Memcached 11211| Cache
 
-    T1 -->|Local 5672 → TLS 5671| MQ[(Amazon MQ RabbitMQ)]
-    T2 -->|Local 5672 → TLS 5671| MQ
+    T1 -->|Local 5672 to TLS 5671| MQ[(Amazon MQ RabbitMQ)]
+    T2 -->|Local 5672 to TLS 5671| MQ
 
     T1 --> NAT[NAT Gateway]
     T2 --> NAT
     NAT --> Internet((Internet))
 
-    DNS[Route 53 Private Hosted Zone\nvprofile] -. db01.vprofile .-> RDS
-    DNS -. mc01.vprofile .-> Cache
-    DNS -. rmq01.vprofile .-> MQ
+    DNS["Route 53 Private Hosted Zone<br/>vprofile"]
+    DNS -.->|db01.vprofile| RDS
+    DNS -.->|mc01.vprofile| Cache
+    DNS -.->|rmq01.vprofile| MQ
 ```
 
 ## AWS resources
