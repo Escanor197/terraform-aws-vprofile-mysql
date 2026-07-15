@@ -397,6 +397,3 @@ terraform destroy
 - Apache Tomcat and Maven deployment
 - Security groups and least-path network access
 
-## License
-
-This project is licensed under the [MIT License](LICENSE).
